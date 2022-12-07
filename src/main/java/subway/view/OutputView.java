@@ -37,4 +37,16 @@ public class OutputView {
                 .map(stationCommand -> String.format("%s. %s", stationCommand.getCommand(), stationCommand.getDescription()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
+
+    public void printLineMenu() {
+        System.out.println("## 노선 관리 화면");
+        System.out.println(makeLineMenu());
+        System.out.println();
+    }
+
+    private String makeLineMenu() {
+        return Arrays.stream(LineCommand.values())
+                .map(lineCommand -> String.format("%s. %s", lineCommand.getCommand(), lineCommand.getDescription()))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
 }
