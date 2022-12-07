@@ -2,7 +2,7 @@ package subway.command;
 
 import java.util.Arrays;
 
-public enum MainCommand {
+public enum MainCommand implements Command {
     STATION("1", "역 관리"),
     LINE("2", "노선 관리"),
     SECTION("3", "구간 관리"),
@@ -30,10 +30,12 @@ public enum MainCommand {
         return this.command.equals(command.toUpperCase());
     }
 
+    @Override
     public String getCommand() {
         return command;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }

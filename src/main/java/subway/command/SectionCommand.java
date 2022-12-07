@@ -2,7 +2,7 @@ package subway.command;
 
 import java.util.Arrays;
 
-public enum SectionCommand {
+public enum SectionCommand implements Command {
     ADD("1", "구간 등록"),
     DELETE("2", "구간 삭제"),
     BACK("B", "돌아가기");
@@ -28,10 +28,12 @@ public enum SectionCommand {
         return this.command.equals(command.toUpperCase());
     }
 
+    @Override
     public String getCommand() {
         return command;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
