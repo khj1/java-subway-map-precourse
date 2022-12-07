@@ -17,7 +17,7 @@ import java.util.List;
 
 public class SubwayController {
 
-    private static final String[] stations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
+    private static final String[] initStations = {"교대역", "강남역", "역삼역", "남부터미널역", "양재역", "양재시민의숲역", "매봉역"};
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -34,7 +34,7 @@ public class SubwayController {
     }
 
     private void saveStations() {
-        Arrays.stream(stations)
+        Arrays.stream(initStations)
                 .map(Station::create)
                 .forEach(StationRepository::addStation);
     }
@@ -100,9 +100,9 @@ public class SubwayController {
             String lineName = inputView.readLineName();
             Station upStation = inputView.readUpStation();
             Station downStation = inputView.readDownStation();
-            Stations sections = Stations.create(List.of(upStation, downStation));
+            Stations stations = Stations.create(List.of(upStation, downStation));
 
-            Line line = Line.of(lineName, sections);
+            Line line = Line.of(lineName, stations);
             LineRepository.addLine(line);
             outputView.printLineRegisterResult();
         }
