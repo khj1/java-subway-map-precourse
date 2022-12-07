@@ -1,6 +1,7 @@
 package subway.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Line {
 
@@ -22,5 +23,18 @@ public class Line {
 
     public List<Station> getSections() {
         return sections.get();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return Objects.equals(name, line.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, sections);
     }
 }
