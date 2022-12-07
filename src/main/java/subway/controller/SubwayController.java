@@ -66,6 +66,7 @@ public class SubwayController {
             }
             if (command == MainCommand.PRINT_LINES) {
                 outputView.printLines();
+                manageMain();
             }
             isRunnable = false;
         }
@@ -146,7 +147,7 @@ public class SubwayController {
             inputReader.run();
         } catch (IllegalArgumentException error) {
             outputView.printError(error);
-            inputReader.run();
+            checkError(inputReader);
         }
     }
 }
