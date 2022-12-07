@@ -92,4 +92,20 @@ public class OutputView {
                 .map(station -> String.format(INFO_PREFIX, station))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
+
+    public void printStationRegisterResult() {
+        System.out.println("[INFO] 지하철 역이 등록되었습니다.");
+    }
+
+    public void printStationDeleteResult() {
+        System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
+    }
+
+    public void printInitSectionRegisterResult() {
+        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+    }
+
+    public void printLineDeleteResult() {
+        System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
+    }
 }
