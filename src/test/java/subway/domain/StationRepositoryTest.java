@@ -1,8 +1,11 @@
 package subway.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -10,20 +13,41 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StationRepositoryTest {
 
+    Station anyang;
+    Station myunghak;
+    Station geumjung;
+
+    @BeforeEach
+    void setUp() {
+        anyang = Station.create("안양");
+        myunghak = Station.create("명학");
+        geumjung = Station.create("금정");
+    }
+
     @Test
     void 지하철_역_이름은_중복될_수_없다() {
-        StationRepository.addStation(Station.create("안양"));
+        StationRepository.addStation(anyang);
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> StationRepository.addStation(Station.create("안양")));
+                .isThrownBy(() -> StationRepository.addStation(anyang));
     }
 
     @Test
     void 지하철_역_목록을_조회한다() {
-        StationRepository.addStation(Station.create("명학"));
-        StationRepository.addStation(Station.create("금정"));
+        StationRepository.addStation(myunghak);
+        StationRepository.addStation(geumjung);
 
         assertThat(StationRepository.stations())
-                .containsExactly(Station.create("안양"), Station.create("명학"), Station.create("금정"));
+                .containsExactly(anyang, myunghak, geumjung);
+    }
+
+    @Test
+    void 이미_노선에_등록된_역은_삭제할_수_없다() {
+        Sections sections = Sections.create(List.of(anyang, myunghak));
+        Line line = Line.of("1호선", sections);
+        LineRepository.addLine(line);
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> StationRepository.deleteStation(anyang));
     }
 }

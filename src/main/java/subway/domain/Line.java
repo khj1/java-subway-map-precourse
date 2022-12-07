@@ -25,6 +25,10 @@ public class Line {
         return sections.get();
     }
 
+    public boolean contains(Station station) {
+        return sections.contains(station);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

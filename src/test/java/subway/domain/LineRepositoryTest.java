@@ -15,7 +15,6 @@ class LineRepositoryTest {
     void 노선_이름은_종복될_수_없다() {
         List<Station> stations = List.of(Station.create("안양역"), Station.create("명학역"));
         Sections sections = Sections.create(stations);
-        LineRepository.addLine(Line.of("1호선", sections));
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LineRepository.addLine(Line.of("1호선", sections)));

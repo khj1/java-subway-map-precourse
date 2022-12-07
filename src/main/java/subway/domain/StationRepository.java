@@ -3,12 +3,12 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class StationRepository {
     private static final String DUPLICATED_STATION_MESSAGE = "해당 역은 이미 존재합니다";
 
     private static final List<Station> stations = new ArrayList<>();
+    private static final String REGISTERD_STATION_NOT_DELETABLE = "노선에 등록된 역은 제거할 수 없습니다";
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
@@ -25,7 +25,10 @@ public class StationRepository {
         }
     }
 
-    public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+    public static boolean deleteStation(Station station) {
+        if (LineRepository.contains(station)) {
+            throw new IllegalArgumentException(REGISTERD_STATION_NOT_DELETABLE);
+        }
+        return stations.remove(station);
     }
 }

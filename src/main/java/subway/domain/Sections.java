@@ -19,4 +19,8 @@ public class Sections {
     public List<Station> get() {
         return Collections.unmodifiableList(sections);
     }
+
+    public boolean contains(Station station) {
+        return sections.contains(station);
+    }
 }
