@@ -1,13 +1,18 @@
 package subway.view;
 
+import subway.domain.Line;
+import subway.domain.LineRepository;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
 
     private static final String INFO_PREFIX = "[INFO] %s";
+    private static final String SEPARATOR = "---";
 
     public void printStations() {
         StationRepository.stations()
@@ -59,6 +64,32 @@ public class OutputView {
     private String makeSectionMenu() {
         return Arrays.stream(LineCommand.values())
                 .map(sectionCommand -> String.format("%s. %s", sectionCommand.getCommand(), sectionCommand.getDescription()))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    public void printLines() {
+        List<Line> lines = LineRepository.lines();
+        for (Line line : lines) {
+            printLineName(line.getName());
+            printSections(line.getSections());
+            System.out.println();
+        }
+    }
+
+    private void printLineName(String name) {
+        System.out.printf(INFO_PREFIX, name);
+        System.out.println();
+        System.out.printf(INFO_PREFIX, SEPARATOR);
+        System.out.println();
+    }
+
+    private void printSections(List<Station> sections) {
+        System.out.println(makeSections(sections));
+    }
+
+    private String makeSections(List<Station> sections) {
+        return sections.stream()
+                .map(station -> String.format(INFO_PREFIX, station))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 }
