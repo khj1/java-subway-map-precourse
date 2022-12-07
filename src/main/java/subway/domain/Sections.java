@@ -7,6 +7,7 @@ import java.util.List;
 public class Sections {
 
     private static final String CANNOT_ADD_STATION_MESSAGE = "해당 위치에 역을 추가할 수 없습니다.";
+    private static final String STATION_NOT_FOUND_MESSSAGE = "해당 역이 존재하지 않습니다";
     private final List<Station> sections;
 
     public Sections(List<Station> stations) {
@@ -34,5 +35,12 @@ public class Sections {
         if (sequence > sections.size() || sequence < 1) {
             throw new IllegalArgumentException(CANNOT_ADD_STATION_MESSAGE);
         }
+    }
+
+    public void remove(Station station) {
+        if (!sections.contains(station)) {
+            throw new IllegalArgumentException(STATION_NOT_FOUND_MESSSAGE);
+        }
+        sections.remove(station);
     }
 }

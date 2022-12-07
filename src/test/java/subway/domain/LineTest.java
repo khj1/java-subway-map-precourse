@@ -43,4 +43,18 @@ class LineTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> line.addStation(Station.create("사당역"), sequence));
     }
+
+    @Test
+    void 노선의_역을_제거할_수_있다() {
+        line.remove(Station.create("안양역"));
+
+        assertThat(line.getSections())
+                .containsExactly(Station.create("금정역"));
+    }
+
+    @Test
+    void 역_제거시_해당_역이_존재하지_않는_경우_예외_처리() {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> line.remove(Station.create("강남역")));
+    }
 }

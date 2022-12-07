@@ -33,6 +33,10 @@ public class Line {
         sections.add(station, sequence);
     }
 
+    public void remove(Station station) {
+        sections.remove(station);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
