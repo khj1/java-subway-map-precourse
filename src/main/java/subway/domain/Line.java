@@ -1,15 +1,27 @@
 package subway.domain;
 
-public class Line {
-    private Name name;
+import java.util.List;
 
-    public Line(String name) {
+public class Line {
+
+    private final Name name;
+    private final Sections sections;
+
+    public Line(String name, Sections sections) {
         this.name = Name.of(name);
+        this.sections = sections;
+    }
+
+    public static Line of(String name, Station upBoundTerminus, Station downBoundTerminus) {
+        Sections sections = Sections.create(upBoundTerminus, downBoundTerminus);
+        return new Line(name, sections);
     }
 
     public String getName() {
         return name.toString();
     }
 
-    // 추가 기능 구현
+    public List<Station> getSections() {
+        return sections.get();
+    }
 }
