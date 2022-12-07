@@ -19,22 +19,26 @@ class LineTest {
 
     @BeforeEach
     void setUp() {
-        Sections sections = Sections.create(List.of(Station.create("안양역"), Station.create("금정역")));
+        Sections sections = Sections.create(List.of(Station.create("안양역"), Station.create("명학역"), Station.create("금정역")));
+
         line = Line.of("1호선", sections);
     }
 
     @Test
     void 상행_종점과_하행_종점을_입력받는다() {
         assertThat(line.getSections())
-                .containsExactly(Station.create("안양역"), Station.create("금정역"));
+                .containsExactly(Station.create("안양역"), Station.create("명학역"), Station.create("금정역"));
     }
 
     @Test
     void 노선에_역을_추가할_수_있다() {
-        line.addStation(Station.create("명학역"), 2);
+        line.addStation(Station.create("서초역"), 2);
 
         assertThat(line.getSections())
-                .containsExactly(Station.create("안양역"), Station.create("명학역"), Station.create("금정역"));
+                .containsExactly(
+                        Station.create("안양역"), Station.create("서초역"),
+                        Station.create("명학역"), Station.create("금정역")
+                );
     }
 
     @ParameterizedTest
@@ -49,12 +53,20 @@ class LineTest {
         line.remove(Station.create("안양역"));
 
         assertThat(line.getSections())
-                .containsExactly(Station.create("금정역"));
+                .containsExactly(Station.create("명학역"), Station.create("금정역"));
     }
 
     @Test
     void 역_제거시_해당_역이_존재하지_않는_경우_예외_처리() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> line.remove(Station.create("강남역")));
+    }
+
+    @Test
+    void 남은_역이_2개_이하일_경우_더이상_제거할_수_없다() {
+        line.remove(Station.create("명학역"));
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> line.remove(Station.create("안양역")));
     }
 }
