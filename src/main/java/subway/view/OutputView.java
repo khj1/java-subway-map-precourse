@@ -49,4 +49,16 @@ public class OutputView {
                 .map(lineCommand -> String.format("%s. %s", lineCommand.getCommand(), lineCommand.getDescription()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
+
+    public void printSectionMenu() {
+        System.out.println("## 구간 관리 화면");
+        System.out.println(makeSectionMenu());
+        System.out.println();
+    }
+
+    private String makeSectionMenu() {
+        return Arrays.stream(LineCommand.values())
+                .map(sectionCommand -> String.format("%s. %s", sectionCommand.getCommand(), sectionCommand.getDescription()))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
 }
