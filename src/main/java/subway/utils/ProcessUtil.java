@@ -1,9 +1,9 @@
 package subway.utils;
 
-import subway.view.OutputView;
+import subway.view.ouput.OutputView;
 
 public class ProcessUtil {
-    
+
     public static void checkError(Runnable inputReader) {
         try {
             inputReader.run();

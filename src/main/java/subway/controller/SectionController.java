@@ -6,8 +6,9 @@ import subway.domain.Station;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 import subway.utils.ProcessUtil;
-import subway.view.InputView;
-import subway.view.OutputView;
+import subway.view.input.InputView;
+import subway.view.ouput.OutputView;
+import subway.view.ouput.SectionOutputVIew;
 
 public class SectionController {
 
@@ -16,7 +17,7 @@ public class SectionController {
 
     public SectionController() {
         inputView = new InputView();
-        outputView = new OutputView();
+        outputView = new SectionOutputVIew();
     }
 
     public void run() {
@@ -24,16 +25,16 @@ public class SectionController {
     }
 
     private void manageSection() {
-        outputView.printSectionMenu();
+        outputView.printMenu();
         SectionCommand command = SectionCommand.convert(inputView.readCommand());
 
         if (command == SectionCommand.ADD) {
             addSection();
-            outputView.printSectionRegisterResult();
+            outputView.printRegisterResult();
         }
         if (command == SectionCommand.DELETE) {
             deleteSection();
-            outputView.printSectionDeleteResult();
+            outputView.printDeleteResult();
         }
     }
 

@@ -6,8 +6,9 @@ import subway.domain.Station;
 import subway.domain.Stations;
 import subway.repository.LineRepository;
 import subway.utils.ProcessUtil;
-import subway.view.InputView;
-import subway.view.OutputView;
+import subway.view.input.InputView;
+import subway.view.ouput.LineOutputView;
+import subway.view.ouput.OutputView;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class LineController {
 
     public LineController() {
         inputView = new InputView();
-        outputView = new OutputView();
+        outputView = new LineOutputView();
     }
 
     public void run() {
@@ -26,19 +27,19 @@ public class LineController {
     }
 
     private void manageLine() {
-        outputView.printLineMenu();
+        outputView.printMenu();
         LineCommand command = LineCommand.convert(inputView.readCommand());
 
         if (command == LineCommand.ADD) {
             addLine();
-            outputView.printLineRegisterResult();
+            outputView.printRegisterResult();
         }
         if (command == LineCommand.DELETE) {
             deleteLine();
-            outputView.printLineDeleteResult();
+            outputView.printDeleteResult();
         }
         if (command == LineCommand.READ) {
-            outputView.printLineNames();
+            outputView.printList();
         }
     }
 

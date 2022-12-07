@@ -4,8 +4,9 @@ import subway.command.StationCommand;
 import subway.domain.Station;
 import subway.repository.StationRepository;
 import subway.utils.ProcessUtil;
-import subway.view.InputView;
-import subway.view.OutputView;
+import subway.view.input.InputView;
+import subway.view.ouput.OutputView;
+import subway.view.ouput.StationOutputVIew;
 
 public class StationController {
 
@@ -14,7 +15,7 @@ public class StationController {
 
     public StationController() {
         inputView = new InputView();
-        outputView = new OutputView();
+        outputView = new StationOutputVIew();
     }
 
     public void run() {
@@ -22,19 +23,19 @@ public class StationController {
     }
 
     private void manageStation() {
-        outputView.printStationMenu();
+        outputView.printMenu();
         StationCommand command = StationCommand.convert(inputView.readCommand());
 
         if (command == StationCommand.ADD) {
             addStation();
-            outputView.printStationRegisterResult();
+            outputView.printRegisterResult();
         }
         if (command == StationCommand.DELETE) {
             deleteStation();
-            outputView.printStationDeleteResult();
+            outputView.printDeleteResult();
         }
         if (command == StationCommand.READ) {
-            outputView.printStations();
+            outputView.printList();
         }
     }
 
