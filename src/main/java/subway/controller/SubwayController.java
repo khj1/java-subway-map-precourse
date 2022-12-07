@@ -1,16 +1,16 @@
 package subway.controller;
 
+import subway.command.LineCommand;
+import subway.command.MainCommand;
+import subway.command.SectionCommand;
+import subway.command.StationCommand;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Sections;
 import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.view.InputView;
-import subway.view.LineCommand;
-import subway.view.MainCommand;
 import subway.view.OutputView;
-import subway.view.SectionCommand;
-import subway.view.StationCommand;
 
 import java.util.Arrays;
 import java.util.List;

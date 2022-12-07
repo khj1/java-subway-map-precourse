@@ -1,11 +1,10 @@
-package subway.view;
+package subway.command;
 
 import java.util.Arrays;
 
-public enum StationCommand {
-    ADD("1", "역 등록"),
-    DELETE("2", "역 삭제"),
-    READ("3", "역 조회"),
+public enum SectionCommand {
+    ADD("1", "구간 등록"),
+    DELETE("2", "구간 삭제"),
     BACK("B", "돌아가기");
 
     private static final String INVALID_COMMAND_MESSAGE = "선택할 수 없는 기능입니다";
@@ -13,14 +12,14 @@ public enum StationCommand {
     private final String command;
     private final String description;
 
-    StationCommand(String command, String description) {
+    SectionCommand(String command, String description) {
         this.command = command;
         this.description = description;
     }
 
-    public static StationCommand convert(String command) {
+    public static SectionCommand convert(String command) {
         return Arrays.stream(values())
-                .filter(stationCommand -> stationCommand.isSameCommand(command))
+                .filter(sectionCommand -> sectionCommand.isSameCommand(command))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_COMMAND_MESSAGE));
     }
