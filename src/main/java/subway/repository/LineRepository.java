@@ -1,4 +1,7 @@
-package subway.domain;
+package subway.repository;
+
+import subway.domain.Line;
+import subway.domain.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +10,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LineRepository {
-    
+
     private static final String DUPLICATED_LINE_MESSAGE = "해당 노선은 이미 존재합니다.";
     private static final String LINE_NAME_NOT_FOUND_MESSAGE = "해당 노선은 존재하지 않습니다.";
 

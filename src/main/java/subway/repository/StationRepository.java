@@ -1,11 +1,13 @@
-package subway.domain;
+package subway.repository;
+
+import subway.domain.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class StationRepository {
-    
+
     private static final String DUPLICATED_STATION_MESSAGE = "해당 역은 이미 존재합니다";
     private static final String REGISTERED_STATION_NOT_DELETABLE = "노선에 등록된 역은 제거할 수 없습니다";
     private static final String STATION_NOT_FOUND = "해당 역은 존재하지 않습니다";

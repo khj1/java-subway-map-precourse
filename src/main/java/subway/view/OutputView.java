@@ -6,9 +6,9 @@ import subway.command.MainCommand;
 import subway.command.SectionCommand;
 import subway.command.StationCommand;
 import subway.domain.Line;
-import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.domain.StationRepository;
+import subway.repository.LineRepository;
+import subway.repository.StationRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -115,7 +115,7 @@ public class OutputView {
         System.out.println("[INFO] 구간이 삭제되었습니다.");
     }
 
-    public void printError(IllegalArgumentException error) {
+    public static void printError(IllegalArgumentException error) {
         System.out.print(ERROR_PREFIX);
         System.out.println(error.getMessage());
     }
