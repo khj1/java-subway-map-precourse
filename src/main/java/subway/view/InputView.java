@@ -27,6 +27,8 @@ public class InputView {
     }
 
     public String readLineName() {
+        System.out.println("## 등록할 노선 이름을 입력하세요.");
+
         return scanner.nextLine();
     }
 
@@ -54,10 +56,10 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public Station readStationForSection() {
+    public String readStationForSection() {
         System.out.println("## 역이름을 입력하세요.");
 
-        return Station.create(scanner.nextLine());
+        return scanner.nextLine();
     }
 
     public int readSequence() {

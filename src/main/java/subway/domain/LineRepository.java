@@ -33,4 +33,11 @@ public class LineRepository {
         return lines().stream()
                 .anyMatch(line -> line.contains(station));
     }
+
+    public static Line findByName(String name) {
+        return lines().stream()
+                .filter(line -> line.isSameName(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 노선은 존재하지 않습니다."));
+    }
 }

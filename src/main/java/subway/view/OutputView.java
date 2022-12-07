@@ -15,8 +15,14 @@ public class OutputView {
     private static final String SEPARATOR = "---";
 
     public void printStations() {
-        StationRepository.stations()
-                .forEach(station -> System.out.printf(INFO_PREFIX, station));
+        System.out.println("## 역 목록");
+        System.out.println(makeStations());
+    }
+
+    private String makeStations() {
+        return StationRepository.stations().stream()
+                .map(station -> String.format(INFO_PREFIX, station))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     public void printMainMenu() {
@@ -62,7 +68,7 @@ public class OutputView {
     }
 
     private String makeSectionMenu() {
-        return Arrays.stream(LineCommand.values())
+        return Arrays.stream(SectionCommand.values())
                 .map(sectionCommand -> String.format("%s. %s", sectionCommand.getCommand(), sectionCommand.getDescription()))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
@@ -102,11 +108,35 @@ public class OutputView {
         System.out.println("[INFO] 지하철 역이 삭제되었습니다.");
     }
 
-    public void printInitSectionRegisterResult() {
-        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+    public void printSectionRegisterResult() {
+        System.out.println("[INFO] 구간이 등록되었습니다.");
     }
 
     public void printLineDeleteResult() {
         System.out.println("[INFO] 지하철 노선이 삭제되었습니다.");
+    }
+
+    public void printLineRegisterResult() {
+        System.out.println("[INFO] 지하철 노선이 등록되었습니다.");
+    }
+
+    public void printLineNames() {
+        System.out.println("## 노선 목록");
+        List<Line> lines = LineRepository.lines();
+        List<String> lineNames = lines.stream()
+                .map(Line::getName)
+                .collect(Collectors.toList());
+
+        System.out.println(makeLineNames(lineNames));
+    }
+
+    private String makeLineNames(List<String> lineNames) {
+        return lineNames.stream()
+                .map(lineName -> String.format(INFO_PREFIX, lineName))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    public void printSectionDeleteResult() {
+        System.out.println("[INFO] 구간이 삭제되었습니다.");
     }
 }

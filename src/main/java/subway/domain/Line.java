@@ -37,6 +37,10 @@ public class Line {
         sections.remove(station);
     }
 
+    public boolean isSameName(String name) {
+        return this.name.equals(Name.of(name));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
