@@ -68,6 +68,7 @@ public class OutputView {
     }
 
     public void printLines() {
+        System.out.println("## 지하철 노선도");
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
             printLineName(line.getName());
