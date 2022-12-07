@@ -29,6 +29,10 @@ public class Line {
         return sections.contains(station);
     }
 
+    public void addStation(Station station, int sequence) {
+        sections.add(station, sequence);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

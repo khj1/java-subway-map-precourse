@@ -1,22 +1,46 @@
 package subway.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LineTest {
 
+    Line line;
+
+    @BeforeEach
+    void setUp() {
+        Sections sections = Sections.create(List.of(Station.create("안양역"), Station.create("금정역")));
+        line = Line.of("1호선", sections);
+    }
+
     @Test
     void 상행_종점과_하행_종점을_입력받는다() {
-        Sections sections = Sections.create(List.of(Station.create("안양역"), Station.create("금정역")));
-        Line line = Line.of("1호선", sections);
-
         assertThat(line.getSections())
                 .containsExactly(Station.create("안양역"), Station.create("금정역"));
+    }
+
+    @Test
+    void 노선에_역을_추가할_수_있다() {
+        line.addStation(Station.create("명학역"), 2);
+
+        assertThat(line.getSections())
+                .containsExactly(Station.create("안양역"), Station.create("명학역"), Station.create("금정역"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 5})
+    void 잘못된_역_위치_입력에_관한_유효성_검증(int sequence) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> line.addStation(Station.create("사당역"), sequence));
     }
 }
