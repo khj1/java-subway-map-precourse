@@ -8,12 +8,12 @@ public class Sections {
 
     private final List<Station> sections;
 
-    public Sections(List<Station> sections) {
-        this.sections = new LinkedList<>(sections);
+    public Sections(List<Station> stations) {
+        this.sections = new LinkedList<>(stations);
     }
 
-    public static Sections create(Station upBoundTerminus, Station downBoundTerminus) {
-        return new Sections(List.of(upBoundTerminus, downBoundTerminus));
+    public static Sections create(List<Station> stations) {
+        return new Sections(stations);
     }
 
     public List<Station> get() {

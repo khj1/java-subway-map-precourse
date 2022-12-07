@@ -12,8 +12,7 @@ public class Line {
         this.sections = sections;
     }
 
-    public static Line of(String name, Station upBoundTerminus, Station downBoundTerminus) {
-        Sections sections = Sections.create(upBoundTerminus, downBoundTerminus);
+    public static Line of(String name, Sections sections) {
         return new Line(name, sections);
     }
 
