@@ -12,12 +12,12 @@ import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class LineRepositoryTest {
 
-    Sections sections;
+    Stations sections;
 
     @BeforeEach
     void setUp() {
         List<Station> stations = List.of(Station.create("안양역"), Station.create("명학역"));
-        sections = Sections.create(stations);
+        sections = Stations.create(stations);
     }
 
     @Test

@@ -43,7 +43,7 @@ class StationRepositoryTest {
 
     @Test
     void 이미_노선에_등록된_역은_삭제할_수_없다() {
-        Sections sections = Sections.create(List.of(anyang, myunghak));
+        Stations sections = Stations.create(List.of(anyang, myunghak));
         Line line = Line.of("1호선", sections);
         LineRepository.addLine(line);
 

@@ -6,9 +6,9 @@ import subway.command.SectionCommand;
 import subway.command.StationCommand;
 import subway.domain.Line;
 import subway.domain.LineRepository;
-import subway.domain.Sections;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.domain.Stations;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -41,7 +41,7 @@ public class SubwayController {
 
     private void saveLines() {
         Arrays.stream(InitLines.values())
-                .map(initLines -> Line.of(initLines.getLineName(), Sections.create(initLines.getSections())))
+                .map(initLines -> Line.of(initLines.getLineName(), Stations.create(initLines.getSections())))
                 .forEach(LineRepository::addLine);
     }
 
@@ -100,7 +100,7 @@ public class SubwayController {
             String lineName = inputView.readLineName();
             Station upStation = inputView.readUpStation();
             Station downStation = inputView.readDownStation();
-            Sections sections = Sections.create(List.of(upStation, downStation));
+            Stations sections = Stations.create(List.of(upStation, downStation));
 
             Line line = Line.of(lineName, sections);
             LineRepository.addLine(line);

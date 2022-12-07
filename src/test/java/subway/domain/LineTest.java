@@ -19,14 +19,14 @@ class LineTest {
 
     @BeforeEach
     void setUp() {
-        Sections sections = Sections.create(List.of(Station.create("안양역"), Station.create("명학역"), Station.create("금정역")));
+        Stations sections = Stations.create(List.of(Station.create("안양역"), Station.create("명학역"), Station.create("금정역")));
 
         line = Line.of("1호선", sections);
     }
 
     @Test
     void 상행_종점과_하행_종점을_입력받는다() {
-        assertThat(line.getSections())
+        assertThat(line.getStations())
                 .containsExactly(Station.create("안양역"), Station.create("명학역"), Station.create("금정역"));
     }
 
@@ -34,7 +34,7 @@ class LineTest {
     void 노선에_역을_추가할_수_있다() {
         line.addStation(Station.create("서초역"), 2);
 
-        assertThat(line.getSections())
+        assertThat(line.getStations())
                 .containsExactly(
                         Station.create("안양역"), Station.create("서초역"),
                         Station.create("명학역"), Station.create("금정역")
@@ -52,7 +52,7 @@ class LineTest {
     void 노선의_역을_제거할_수_있다() {
         line.remove(Station.create("안양역"));
 
-        assertThat(line.getSections())
+        assertThat(line.getStations())
                 .containsExactly(Station.create("명학역"), Station.create("금정역"));
     }
 

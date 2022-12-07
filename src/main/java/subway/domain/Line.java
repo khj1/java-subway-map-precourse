@@ -6,14 +6,14 @@ import java.util.Objects;
 public class Line {
 
     private final Name name;
-    private final Sections sections;
+    private final Stations stations;
 
-    public Line(String name, Sections sections) {
+    public Line(String name, Stations sections) {
         this.name = Name.of(name);
-        this.sections = sections;
+        this.stations = sections;
     }
 
-    public static Line of(String name, Sections sections) {
+    public static Line of(String name, Stations sections) {
         return new Line(name, sections);
     }
 
@@ -21,20 +21,20 @@ public class Line {
         return name.toString();
     }
 
-    public List<Station> getSections() {
-        return sections.get();
+    public List<Station> getStations() {
+        return stations.get();
     }
 
     public boolean contains(Station station) {
-        return sections.contains(station);
+        return stations.contains(station);
     }
 
     public void addStation(Station station, int sequence) {
-        sections.add(station, sequence);
+        stations.add(station, sequence);
     }
 
     public void remove(Station station) {
-        sections.remove(station);
+        stations.remove(station);
     }
 
     public boolean isSameName(String name) {
@@ -51,6 +51,6 @@ public class Line {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, sections);
+        return Objects.hash(name, stations);
     }
 }

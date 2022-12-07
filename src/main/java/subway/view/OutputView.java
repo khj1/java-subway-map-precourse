@@ -83,7 +83,7 @@ public class OutputView {
         List<Line> lines = LineRepository.lines();
         for (Line line : lines) {
             printLineName(line.getName());
-            printSections(line.getSections());
+            printSections(line.getStations());
             System.out.println();
         }
     }
