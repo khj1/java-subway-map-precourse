@@ -13,6 +13,7 @@ public class OutputView {
 
     private static final String INFO_PREFIX = "[INFO] %s";
     private static final String SEPARATOR = "---";
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     public void printStations() {
         System.out.println("## 역 목록");
@@ -138,5 +139,10 @@ public class OutputView {
 
     public void printSectionDeleteResult() {
         System.out.println("[INFO] 구간이 삭제되었습니다.");
+    }
+
+    public void printError(IllegalArgumentException error) {
+        System.out.print(ERROR_PREFIX);
+        System.out.println(error.getMessage());
     }
 }

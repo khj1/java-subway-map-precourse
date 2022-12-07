@@ -45,20 +45,24 @@ public class SubwayController {
                 .forEach(LineRepository::addLine);
     }
 
-    public void runMain() {
+    public void run() {
+        checkError(this::manageMain);
+    }
+
+    private void manageMain() {
         boolean isRunnable = true;
         while (isRunnable) {
             outputView.printMainMenu();
             MainCommand command = MainCommand.convert(inputView.readCommand());
 
             if (command == MainCommand.STATION) {
-                manageStation();
+                checkError(this::manageStation);
             }
             if (command == MainCommand.LINE) {
-                manageLine();
+                checkError(this::manageLine);
             }
             if (command == MainCommand.SECTION) {
-                manageSection();
+                checkError(this::manageSection);
             }
             if (command == MainCommand.PRINT_LINES) {
                 outputView.printLines();
@@ -84,7 +88,7 @@ public class SubwayController {
         if (command == StationCommand.READ) {
             outputView.printStations();
         }
-        runMain();
+        manageMain();
     }
 
     private void manageLine() {
@@ -109,7 +113,7 @@ public class SubwayController {
         if (command == LineCommand.READ) {
             outputView.printLineNames();
         }
-        runMain();
+        manageMain();
     }
 
     private void manageSection() {
@@ -134,6 +138,15 @@ public class SubwayController {
             line.remove(station);
             outputView.printSectionDeleteResult();
         }
-        runMain();
+        manageMain();
+    }
+
+    private void checkError(Runnable inputReader) {
+        try {
+            inputReader.run();
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error);
+            inputReader.run();
+        }
     }
 }
