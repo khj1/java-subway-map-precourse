@@ -5,6 +5,8 @@ import subway.command.SectionCommand;
 public class SectionOutputVIew implements OutputView {
 
     private static final String SECTION_MANAGEMENT_VIEW_IS = "## 구간 관리 화면";
+    private static final String SECTION_REGISTERED = "구간이 등록되었습니다.";
+    private static final String SECTION_DELETED = "구간이 삭제되었습니다.";
 
     @Override
     public void printMenu() {
@@ -15,11 +17,13 @@ public class SectionOutputVIew implements OutputView {
 
     @Override
     public void printRegisterResult() {
-        System.out.println("[INFO] 구간이 등록되었습니다.");
+        System.out.printf(INFO_PREFIX, SECTION_REGISTERED);
+        System.out.println();
     }
 
     @Override
     public void printDeleteResult() {
-        System.out.println("[INFO] 구간이 삭제되었습니다.");
+        System.out.printf(INFO_PREFIX, SECTION_DELETED);
+        System.out.println();
     }
 }
