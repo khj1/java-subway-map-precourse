@@ -1,5 +1,6 @@
 package subway.domain;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -36,6 +37,7 @@ class StationRepositoryTest {
 
     @Test
     void 지하철_역_목록을_조회한다() {
+        StationRepository.addStation(anyang);
         StationRepository.addStation(myunghak);
         StationRepository.addStation(geumjung);
 
@@ -51,5 +53,13 @@ class StationRepositoryTest {
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> StationRepository.deleteStation(anyang));
+    }
+
+    @AfterEach
+    void drop() {
+        LineRepository.deleteLineByName("1호선");
+        StationRepository.deleteStation(anyang);
+        StationRepository.deleteStation(myunghak);
+        StationRepository.deleteStation(geumjung);
     }
 }
