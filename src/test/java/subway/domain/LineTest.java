@@ -19,13 +19,13 @@ class LineTest {
 
     @BeforeEach
     void setUp() {
-        Stations sections = Stations.create(List.of(Station.create("안양역"), Station.create("명학역"), Station.create("금정역")));
+        Stations stations = Stations.create(List.of(Station.create("안양역"), Station.create("명학역"), Station.create("금정역")));
 
-        line = Line.of("1호선", sections);
+        line = Line.of("1호선", stations);
     }
 
     @Test
-    void 상행_종점과_하행_종점을_입력받는다() {
+    void 노선을_초기화_기능() {
         assertThat(line.getStations())
                 .containsExactly(Station.create("안양역"), Station.create("명학역"), Station.create("금정역"));
     }
