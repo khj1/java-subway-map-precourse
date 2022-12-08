@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Station {
     
-    private Name name;
+    private final Name name;
 
     public Station(String name) {
         this.name = Name.of(name);
