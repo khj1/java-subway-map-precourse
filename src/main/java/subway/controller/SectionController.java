@@ -26,7 +26,7 @@ public class SectionController {
 
     private void manageSection() {
         outputView.printMenu();
-        SectionCommand command = SectionCommand.convert(inputView.readCommand());
+        SectionCommand command = SectionCommand.from(inputView.readCommand());
 
         if (command == SectionCommand.ADD) {
             addSection();

@@ -28,7 +28,7 @@ public class LineController {
 
     private void manageLine() {
         outputView.printMenu();
-        LineCommand command = LineCommand.convert(inputView.readCommand());
+        LineCommand command = LineCommand.from(inputView.readCommand());
 
         if (command == LineCommand.ADD) {
             addLine();

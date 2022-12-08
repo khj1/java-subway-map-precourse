@@ -17,7 +17,7 @@ public enum SectionCommand implements Command {
         this.description = description;
     }
 
-    public static SectionCommand convert(String command) {
+    public static SectionCommand from(String command) {
         return Arrays.stream(values())
                 .filter(sectionCommand -> sectionCommand.isSameCommand(command))
                 .findFirst()

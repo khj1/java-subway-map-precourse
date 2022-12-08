@@ -24,7 +24,7 @@ public class StationController {
 
     private void manageStation() {
         outputView.printMenu();
-        StationCommand command = StationCommand.convert(inputView.readCommand());
+        StationCommand command = StationCommand.from(inputView.readCommand());
 
         if (command == StationCommand.ADD) {
             addStation();

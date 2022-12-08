@@ -55,7 +55,7 @@ public class SubwayController {
     private void manageMain() {
         while (true) {
             outputView.printMenu();
-            MainCommand command = MainCommand.convert(inputView.readCommand());
+            MainCommand command = MainCommand.from(inputView.readCommand());
 
             if (command == MainCommand.STATION) {
                 stationController.run();

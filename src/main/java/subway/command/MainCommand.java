@@ -19,7 +19,7 @@ public enum MainCommand implements Command {
         this.description = description;
     }
 
-    public static MainCommand convert(String command) {
+    public static MainCommand from(String command) {
         return Arrays.stream(values())
                 .filter(mainCommand -> mainCommand.isSameCommand(command))
                 .findFirst()

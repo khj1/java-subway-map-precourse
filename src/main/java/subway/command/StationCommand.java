@@ -18,7 +18,7 @@ public enum StationCommand implements Command {
         this.description = description;
     }
 
-    public static StationCommand convert(String command) {
+    public static StationCommand from(String command) {
         return Arrays.stream(values())
                 .filter(stationCommand -> stationCommand.isSameCommand(command))
                 .findFirst()

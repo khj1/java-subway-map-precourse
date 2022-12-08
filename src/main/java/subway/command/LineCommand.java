@@ -18,7 +18,7 @@ public enum LineCommand implements Command {
         this.description = description;
     }
 
-    public static LineCommand convert(String command) {
+    public static LineCommand from(String command) {
         return Arrays.stream(values())
                 .filter(lineCommand -> lineCommand.isSameCommand(command))
                 .findFirst()
