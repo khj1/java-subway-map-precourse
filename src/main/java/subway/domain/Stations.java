@@ -35,9 +35,13 @@ public class Stations {
     }
 
     private void validateSequence(int sequence) {
-        if (sequence > stations.size() || sequence < 1) {
+        if (isValidSequence(sequence)) {
             throw new IllegalArgumentException(CANNOT_ADD_STATION_MESSAGE);
         }
+    }
+
+    private boolean isValidSequence(int sequence) {
+        return sequence > stations.size() || sequence < 1;
     }
 
     public void remove(Station station) {
