@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class InputView {
 
+    private static final String INVALID_NON_NUMERIC_INPUT = "숫자만 입력할 수 있습니다";
+
     final Scanner scanner = new Scanner(System.in);
 
     public String readCommand() {
@@ -20,7 +22,7 @@ public class InputView {
         return Station.create(scanner.nextLine());
     }
 
-    public Station readDeleteStation() {
+    public Station readStationForDelete() {
         System.out.println("## 삭제할 역 이름을 입력하세요.");
 
         return Station.create(scanner.nextLine());
@@ -84,9 +86,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException error) {
-            throw new IllegalArgumentException("숫자만 입력할 수 있습니다");
+            throw new IllegalArgumentException(INVALID_NON_NUMERIC_INPUT);
         }
     }
-
-
 }

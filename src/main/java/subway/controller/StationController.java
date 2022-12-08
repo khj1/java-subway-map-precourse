@@ -45,7 +45,7 @@ public class StationController {
     }
 
     private void deleteStation() {
-        Station station = inputView.readDeleteStation();
+        Station station = inputView.readStationForDelete();
         StationRepository.deleteStation(station);
     }
 }
